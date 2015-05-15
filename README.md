@@ -7,6 +7,12 @@
 Show fast-loading temporary images in place of an eventual slow-loading
 image.
 
+## Browser Compatability ##
+
+This library relies on `addEventListener` and `removeEventListener`
+which is
+[IE9+](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Browser_compatibility)
+
 ## Building yourself ##
 
 ```bash
