@@ -1,6 +1,6 @@
 {
   "name": "ember-skeleton",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Show fast-loading temporary images in place of an eventual slow-loading image",
   "directories": {
     "doc": "doc",
