@@ -26,7 +26,7 @@ If it is a bug [please open an issue on GitHub](https://github.com/dockyard/embe
 
 ## Usage ##
 
-Simply use the component in your templates:
+Use the component in your templates:
 
 ```hbs
 {{skeleton-img src="/path/to/large/image.png" tmpSrc="/path/to/small/placeholder.png"}}
@@ -46,6 +46,54 @@ The workflow is thus:
 ```hbs
 {{skeleton-img src="/path/to/invalid/large/image.png" tmpSrc="/path/to/small/placeholder.png" errorSrc="/path/to/error/placeholder.png"}}
 ```
+
+### Setting Defaults ###
+
+If you'd like to set defaults instead of having to manually set `tmpSrc`
+and `errorSrc` for each use of `{{skeleton-img}}` you can overwrite the
+component in `app/components/skeleton-img.js`
+
+```javascript
+import SkeletonImg from 'ember-skeleton/components/skeleton-img';
+
+export default SkeletonImg.extend({
+  tmpSrc: "/default/path/to/placeholder.png",
+  errorSrc: "/default/path/to/error/placeholder.png"
+});
+```
+
+Now you can do:
+
+```hbs
+{{skeleton-img src="/path/to/large/image.png"}}
+```
+
+You can still override the defaults by passing those values into the
+component from within the template.
+
+## Styling ##
+
+The component itself produced an `img` tag with a `skeleton-img` class.
+The follow state-based classes are also available:
+
+* `loading` used when the `src` image is still loading
+* `loaded` used when `src` has successfully completed
+* `load-error` used if `src` has not succesfully completed
+
+Because the slow-loading images will likely be a different size than the
+placeholders it is recommended that you normalize the `img` tag's
+dimensions:
+
+```css
+.skeleton-img {
+  width: 300px;
+  height: 300px;
+}
+```
+
+This example will ensure that the when `src` swaps our with `tmpSrc`
+that there isn't any chnages in dimensions. This of course is optional
+and the values should change based upon your needs.
 
 ## Authors ##
 
