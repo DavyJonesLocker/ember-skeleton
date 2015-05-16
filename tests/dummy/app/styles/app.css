@@ -1,4 +1,6 @@
 .skeleton-img {
+  display: block;
+  margin-top: 300px;
   width: 300px;
   height: 200px;
 }

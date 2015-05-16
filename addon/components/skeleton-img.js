@@ -3,26 +3,36 @@ import Ember from 'ember';
 const {
   set,
   get,
-  on
+  on,
+  addObserver,
+  removeObserver
 } = Ember;
 
 export default Ember.Component.extend({
+  renderSrc: true,
   setup: on('init', function() {
     set(this, 'imgBindings', {
       load: this.load.bind(this),
-      error: this.error.bind(this)
+      error: this.error.bind(this),
+      setup: this.setupActualImg.bind(this)
     });
 
-    this.setupActualImg();
-
+    set(this, 'actualSrc', get(this, 'src'));
     set(this, 'src', get(this, 'tmpSrc'));
     set(this, 'loadState', 'loading');
+
+    if(get(this, 'renderSrc')) {
+      this.setupActualImg();
+    } else {
+      addObserver(this, 'renderSrc', get(this, 'imgBindings.setup'));
+    }
   }),
   setupActualImg() {
     let img = new Image();
     img.addEventListener('load', get(this, 'imgBindings.load'));
     img.addEventListener('error', get(this, 'imgBindings.error'));
-    img.src = get(this, 'src');
+    removeObserver(this, 'renderSrc', get(this, 'imgBindings.setup'));
+    img.src = get(this, 'actualSrc');
     set(this, 'actualImg', img);
   },
   classNames: ['skeleton-img'],
