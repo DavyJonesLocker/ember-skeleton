@@ -101,6 +101,33 @@ This example will ensure that the when `src` swaps our with `tmpSrc`
 that there isn't any chnages in dimensions. This of course is optional
 and the values should change based upon your needs.
 
+## Defer Rendering ##
+
+If you'd like to defer rendering you can override the `renderSrc` value
+on the component. For example, you might want to change over to only
+rendering the `src` once the element is in the viewport. This is easily
+accomplished in combination with
+[ember-in-viewport](https://github.com/dockyard/ember-in-viewport).
+Override `app/components/skeleton-img.js`
+
+```javascript
+import SkeletonImg from 'ember-skeleton/components/skeleton-img';
+import InViewportMixin from 'ember-in-viewport';
+
+const {
+  set
+} = Ember;
+
+export default SkeletonImg.extend(InViewportMixin, {
+  renderSrc: false,
+  didEnterViewport() {
+    set(this, 'renderSrc', true);
+  }
+});
+```
+
+This is a great performance optimization for mobile applications.
+
 ## Authors ##
 
 * [Brian Cardarella](http://twitter.com/bcardarella)
