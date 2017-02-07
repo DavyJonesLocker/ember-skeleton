@@ -1,6 +1,6 @@
 # Ember skeleton #
 
-[![Build Status](https://secure.travis-ci.org/dockyard/ember-skeleton.svg?branch=master)](http://travis-ci.org/dockyard/ember-skeleton)
+[![Build Status](https://secure.travis-ci.org/DockYard/ember-skeleton.svg?branch=master)](http://travis-ci.org/DockYard/ember-skeleton)
 
 ## About ##
 
