@@ -1,4 +1,4 @@
-# Ember skeleton # [![Build Status](https://secure.travis-ci.org/DockYard/ember-skeleton.svg?branch=master)](http://travis-ci.org/DockYard/ember-skeleton)
+# Ember skeleton [![Build Status](https://secure.travis-ci.org/DockYard/ember-skeleton.svg?branch=master)](http://travis-ci.org/DockYard/ember-skeleton)
 
 **[ember-skeleton is built and maintained by DockYard, contact us for expert Ember.js consulting](https://dockyard.com/ember-consulting)**.
 
