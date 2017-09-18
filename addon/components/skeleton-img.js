@@ -15,7 +15,7 @@ export default Component.extend({
   attributeBindings: ['src'],
   classNames: ['skeleton-img'],
   classNameBindings: ['loadState'],
-  
+
   renderSrc: true,
 
   init() {
@@ -43,16 +43,16 @@ export default Component.extend({
   setupActualImg() {
     let imgSrc =  get(this, 'actualSrc');
     let img = { src: imgSrc };
-    
+
     removeObserver(this, 'renderSrc', get(this, 'imgBindings.setup'));
-    
+
     if (typeof Image !== 'undefined') {
       img = new Image();
       img.src = imgSrc;
       img.addEventListener('load', get(this, 'imgBindings.load'));
       img.addEventListener('error', get(this, 'imgBindings.error'));
     }
-    
+
     set(this, 'actualImg', img);
   },
 
