@@ -40,11 +40,18 @@ export default Component.extend({
   },
 
   setupActualImg() {
-    let img = new Image();
-    img.addEventListener('load', get(this, 'imgBindings.load'));
-    img.addEventListener('error', get(this, 'imgBindings.error'));
+    let imgSrc =  get(this, 'actualSrc');
+    let img = { src: imgSrc };
+    
     removeObserver(this, 'renderSrc', get(this, 'imgBindings.setup'));
-    img.src = get(this, 'actualSrc');
+    
+    if (typeof window !== 'undefined') {
+      img = new Image();
+      img.src = imgSrc;
+      img.addEventListener('load', get(this, 'imgBindings.load'));
+      img.addEventListener('error', get(this, 'imgBindings.error'));
+    }
+    
     set(this, 'actualImg', img);
   },
 
