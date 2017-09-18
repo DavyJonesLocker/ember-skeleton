@@ -11,10 +11,11 @@ const {
 } = Ember;
 
 export default Component.extend({
-  classNames: ['skeleton-img'],
-  classNameBindings: ['loadState'],
   tagName: 'img',
   attributeBindings: ['src'],
+  classNames: ['skeleton-img'],
+  classNameBindings: ['loadState'],
+  
   renderSrc: true,
 
   init() {
@@ -45,7 +46,7 @@ export default Component.extend({
     
     removeObserver(this, 'renderSrc', get(this, 'imgBindings.setup'));
     
-    if (typeof window !== 'undefined') {
+    if (typeof Image !== 'undefined') {
       img = new Image();
       img.src = imgSrc;
       img.addEventListener('load', get(this, 'imgBindings.load'));
