@@ -14,7 +14,7 @@ export default Component.extend({
   classNames: ['skeleton-img'],
   classNameBindings: ['loadState'],
   tagName: 'img',
-  attributeBindings: ['src'],
+  attributeBindings: ['src', 'alt'],
   renderSrc: true,
 
   init() {
