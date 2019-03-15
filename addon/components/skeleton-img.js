@@ -1,14 +1,11 @@
-import Ember from 'ember';
-
-const {
-  set,
-  get,
-  addObserver,
-  setProperties,
+import {
   getWithDefault,
-  removeObserver,
-  Component
-} = Ember;
+  setProperties,
+  get,
+  set
+} from '@ember/object';
+import { removeObserver, addObserver } from '@ember/object/observers';
+import Component from '@ember/component';
 
 export default Component.extend({
   tagName: 'img',
