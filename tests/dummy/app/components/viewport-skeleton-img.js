@@ -1,19 +1,15 @@
-import Ember from 'ember';
-import SkeletonImg from 'ember-skeleton/components/skeleton-img';
+import { set } from '@ember/object';
 import InViewportMixin from 'ember-in-viewport';
-
-const {
-  set,
-  on
-} = Ember;
+import SkeletonImg from 'ember-skeleton/components/skeleton-img';
 
 export default SkeletonImg.extend(InViewportMixin, {
   renderSrc: false,
+  classNames: ['viewport-skeleton'],
   didEnterViewport() {
+    console.log('here');
     set(this, 'renderSrc', true);
   },
-  classNames: ['viewport-skeleton'],
-  viewportOptionsOverride: on('didInsertElement', function() {
+  didInsertElement() {
     let half = this.element.getBoundingClientRect().height / 2;
     set(this, 'viewportTolerance', {
       top: half,
@@ -21,5 +17,5 @@ export default SkeletonImg.extend(InViewportMixin, {
       left: 0,
       right: 0
     });
-  })
+  }
 });

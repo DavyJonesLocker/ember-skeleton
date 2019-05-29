@@ -1,20 +1,18 @@
-import Ember from 'ember';
-
-const {
-  set,
-  get,
-  addObserver,
-  setProperties,
+import {
   getWithDefault,
-  removeObserver,
-  Component
-} = Ember;
+  setProperties,
+  get,
+  set
+} from '@ember/object';
+import { removeObserver, addObserver } from '@ember/object/observers';
+import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['skeleton-img'],
-  classNameBindings: ['loadState'],
   tagName: 'img',
   attributeBindings: ['src'],
+  classNames: ['skeleton-img'],
+  classNameBindings: ['loadState'],
+
   renderSrc: true,
 
   init() {
@@ -40,11 +38,18 @@ export default Component.extend({
   },
 
   setupActualImg() {
-    let img = new Image();
-    img.addEventListener('load', get(this, 'imgBindings.load'));
-    img.addEventListener('error', get(this, 'imgBindings.error'));
+    let imgSrc =  get(this, 'actualSrc');
+    let img = { src: imgSrc };
+
     removeObserver(this, 'renderSrc', get(this, 'imgBindings.setup'));
-    img.src = get(this, 'actualSrc');
+
+    if (typeof Image !== 'undefined') {
+      img = new Image();
+      img.src = imgSrc;
+      img.addEventListener('load', get(this, 'imgBindings.load'));
+      img.addEventListener('error', get(this, 'imgBindings.error'));
+    }
+
     set(this, 'actualImg', img);
   },
 
